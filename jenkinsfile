@@ -2,9 +2,25 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
+        stage('pull-stage') {
             steps {
-                echo 'Hello World'
+                git branch: 'main', url: 'https://github.com/naveenpawar2004/terraform-file.git'
+            }
+        }
+         stage('init-stage') {
+            steps {
+                sh '''terraform init
+                      terraform plan'''
+            }
+        }
+         stage('approve-stage') {
+            steps {
+                input massage: 'Shall we procced ?', ok: 'approve'
+            }
+        } 
+         stage('apply-stage') {
+            steps {
+                sh 'terraform apply --auto-approve'
             }
         }
     }
