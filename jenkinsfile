@@ -15,7 +15,7 @@ pipeline {
         }
          stage('approve-stage') {
             steps {
-                input massage: 'Shall we procced ?', ok: 'approve'
+                input message: 'Shall we procced ?', ok: 'approve'
             }
         } 
          stage('apply-stage') {
