@@ -18,9 +18,9 @@ pipeline {
                 input message: 'Shall we procced ?', ok: 'approve'
             }
         } 
-         stage('apply-stage') {
+         stage('destroy-stage') {
             steps {
-                sh 'terraform apply --auto-approve'
+                sh 'terraform destroy --auto-approve'
             }
         }
     }
